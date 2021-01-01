@@ -1,0 +1,8 @@
+F:\Khabar\Khabar
+--output-path=obj\Release\netcoreapp2.1\
+--application-name=Khabar
+--content-root=F:\Khabar\Khabar
+--file=F:\Khabar\Khabar\Views\Category\Create.cshtml
+--file=F:\Khabar\Khabar\Views\Category\List.cshtml
+--file=F:\Khabar\Khabar\Views\Home\Index.cshtml
+--file=F:\Khabar\Khabar\Views\_ViewImports.cshtml

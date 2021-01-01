@@ -1,0 +1,27 @@
+﻿@font-face {
+    font-family: Vazir;
+    src: url('../Persianfonts/Vazir-FD.eot');
+    src: url('../Persianfonts/Vazir-FD.eot?#iefix') format('embedded-opentype'), url('../Persianfonts/Vazir-FD.woff') format('woff'), url('../Persianfonts/Vazir-FD.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: VazirBold;
+    src: url('Vazir-Bold.eot');
+    src: url('../Persianfonts/Vazir-Bold-FD.eot?#iefix') format('embedded-opentype'), url('../Persianfonts/Vazir-Bold-FD.woff') format('woff'), url('../Persianfonts/Vazir-Bold-FD.ttf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: VazirLight;
+    src: url('../fonts/Vazir-Light.eot');
+    src: url('../fonts/Vazir-Light.eot?#iefix') format('embedded-opentype'), url('../Persianfonts/Vazir-Light-FD.woff') format('woff'), url('../Persianfonts/Vazir-Light-FD.ttf') format('truetype');
+    font-weight: 300;
+}
+*{
+    font-family: Vazir;
+}
+body
+{
+    direction:rtl;
+}

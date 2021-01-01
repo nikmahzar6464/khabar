@@ -1,0 +1,56 @@
+﻿@model Models.CommentListModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>مدیریت کامنت ها</title>
+
+</head>
+<body>
+    <div style="width:70%;margin:10px auto;">
+        <div class="jumbotron text-center">
+            <h3>مدیریت کامنت ها</h3>
+        </div>
+        <form class="form-inline" asp-controller="Comment" asp-action="List" method="get">
+            <label asp-for="CommentSearchName"></label>
+            <input class="form-control" asp-for="CommentSearchName">
+            <button type="submit" class="btn btn-primary">جستجو</button>
+        </form>
+        <br/>
+        <table class="table text-center table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td>متن کامنت</td>
+                    <td>عنوان خبر</td>
+                    <td>کاربر</td>
+                    <td>حذف</td>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Comments)
+                {
+                    <tr>
+                        <td>@item.CommentName</td>
+                        <td>@item.NewsTitle</td>
+                        <td>@item.UserFullName</td>
+
+                        <td><a class="btn-link"  asp-controller="Comment" asp-action="Remove" asp-route-id="@item.ID">حذف</a></td>
+
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,12 @@
+F:\Khabar\Khabar\bin\Release\netcoreapp2.1\Khabar.deps.json
+F:\Khabar\Khabar\bin\Release\netcoreapp2.1\Khabar.runtimeconfig.json
+F:\Khabar\Khabar\bin\Release\netcoreapp2.1\Khabar.runtimeconfig.dev.json
+F:\Khabar\Khabar\bin\Release\netcoreapp2.1\Khabar.dll
+F:\Khabar\Khabar\bin\Release\netcoreapp2.1\Khabar.pdb
+F:\Khabar\Khabar\obj\Release\netcoreapp2.1\Khabar.csprojAssemblyReference.cache
+F:\Khabar\Khabar\obj\Release\netcoreapp2.1\Khabar.AssemblyInfoInputs.cache
+F:\Khabar\Khabar\obj\Release\netcoreapp2.1\Khabar.AssemblyInfo.cs
+F:\Khabar\Khabar\obj\Release\netcoreapp2.1\Khabar.csproj.CoreCompileInputs.cache
+F:\Khabar\Khabar\obj\Release\netcoreapp2.1\Khabar.dll
+F:\Khabar\Khabar\obj\Release\netcoreapp2.1\Khabar.pdb
+F:\Khabar\Khabar\obj\Release\netcoreapp2.1\Khabar.genruntimeconfig.cache

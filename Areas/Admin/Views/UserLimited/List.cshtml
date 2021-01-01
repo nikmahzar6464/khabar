@@ -1,0 +1,65 @@
+﻿@model Models.UserListModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>مدیریت کاربران</title>
+
+</head>
+<body>
+    <div style="width:70%;margin:10px auto;">
+        <div class="jumbotron text-center">
+            <h3>مدیریت کاربران</h3>
+        </div>
+        <form class="form-inline" asp-controller="User" asp-action="List" method="get">
+            <label asp-for="UserSearchName"></label>
+            <input class="form-control" asp-for="UserSearchName">
+            <button type="submit" class="btn btn-primary">جستجو</button>
+        </form>
+        <div style="text-align:left">
+            <a class="btn-link" asp-controller="UserLimited" asp-action="Create">ثبت جدید</a>
+        </div>
+        <br />
+        <table class="table text-center table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td>نام کاربری</td>
+                    <td>نام و نام خانوادگی</td>
+                    <td>کد ملی</td>
+                    <td>موبایل</td>
+                    <td>ایمیل</td>
+                    <td>نوع کاربر</td>
+                    <td>ویرایش</td>
+                    <td>حذف</td>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Users)
+                {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.FullName</td>
+                    <td>@item.NationalCode</td>
+                    <td>@item.Mobile</td>
+                    <td>@item.Email</td>
+                    <td>@item.UserTypeName</td>
+                    <td><a class="btn-link" asp-area="Admin" asp-controller="UserLimited" asp-action="Create" asp-route-id="@item.ID">ویرایش</a></td>
+                    <td><a class="btn-link"  asp-controller="UserLimited" asp-action="Remove" asp-route-id="@item.ID">حذف</a></td>
+
+
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,31 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/site.css" rel="stylesheet" />
+    <link href="~/Content/DatePicker/persian-datepicker.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+    <script src="~/js/Popper.js"></script>
+    <script src="~/js/DatePicker/persian-date.min.js"></script>
+    <script src="~/js/DatePicker/persian-datepicker.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/js/devAjax.js"></script>
+    <script src="~/js/UICommon.js"></script>
+
+    @RenderSection("Head", false)
+    <title>@ViewBag.Title</title>
+
+</head>
+
+<body>
+
+    @RenderBody()
+</body>
+</html>

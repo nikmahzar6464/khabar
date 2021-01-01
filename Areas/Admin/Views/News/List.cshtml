@@ -1,0 +1,71 @@
+﻿@model Models.NewsListModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>مدیریت خبر ها</title>
+
+</head>
+<body>
+
+   <div style="width:70%;margin:10px auto;">
+            <div class="jumbotron text-center">
+                <h3>مدیریت خبر ها</h3>
+            </div>
+            <form class="form-inline" asp-controller="News" asp-action="List" method="get">
+                <label asp-for="NewsSearchName"></label>
+                <input class="form-control" asp-for="NewsSearchName">
+
+                <label asp-for="CategoryId"></label>
+                <select class="form-control" asp-items="@Model.Categories" asp-for="CategoryId"></select>
+
+                <button type="submit" class="btn btn-primary">جستجو</button>
+            </form>
+            <div style="text-align:left">
+                <a class="btn-link" asp-controller="News" asp-action="Create">ثبت جدید</a>
+            </div>
+            <br />
+            <table class="table text-center table-bordered table-hover" style="font-size: 15px; text-align: center;vertical-align: middle">
+                <thead>
+                    <tr>
+                        <td>عنوان خبر</td>
+                        <td>شرح</td>
+                        <td>تصویر</td>
+                        <td>موضوع</td>
+                        <td>نویسنده</td>
+                        <td>ویرایش</td>
+                        <td>حذف</td>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                   @foreach (var item in Model.News)
+                    {
+
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.FullText</td>
+                        <td>@item.Image</td>
+                        <td>@item.CategoryName</td>
+                        <td>@item.UserFullName</td>
+
+                        <td><a class="btn-link" asp-area="Admin" asp-controller="News" asp-action="Create" asp-route-id="@item.ID">ویرایش</a></td>
+                        <td><a class="btn-link"  asp-controller="News" asp-action="Remove" asp-route-id="@item.ID">حذف</a></td>
+
+                    </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿@model Models.UserModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ثبت کاربران</title>
+
+</head>
+<body>
+    <div style="width:70%;margin:10px auto;">
+        <div class="jumbotron text-center">
+            <h3>ثبت کاربران</h3>
+        </div>
+
+        <form asp-controller="User" asp-action="Create" method="post">
+            <input type="hidden" asp-for="ID" />
+
+            <div class="form-group">
+                <label asp-for="UserTypeID"></label>
+                <select class="form-control" asp-items="@Model.UserTypes" asp-for="UserTypeID"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="UserName"></label>
+                <input class="form-control" asp-for="UserName">
+            </div>
+            <div class="form-group">
+                <label asp-for="PassWord"></label>
+                <input class="form-control" asp-for="PassWord"></input>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FullName"></label>
+                <input class="form-control" asp-for="FullName"></input>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="NationalCode"></label>
+                <input class="form-control" asp-for="NationalCode"></input>
+            </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="Mobile"></label>
+                <input class="form-control" asp-for="Mobile"></input>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input class="form-control" asp-for="Email"></input>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">ثبت</button>
+        </form>
+    </div>
+</body>
+</html>

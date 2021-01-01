@@ -1,0 +1,57 @@
+﻿@model Models.CategoryListModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>مدیریت دسته ها</title>
+
+</head>
+<body>
+    <div style="width:70%;margin:10px auto;">
+        <div class="jumbotron text-center">
+            <h3>مدیریت دسته ها</h3>
+        </div>
+        <form class="form-inline" asp-controller="Category" asp-action="List" method="get">
+            <label asp-for="CategorySearchName"></label>
+            <input class="form-control" asp-for="CategorySearchName">
+
+            <button type="submit" class="btn btn-primary">جستجو</button>
+        </form>
+        <div style="text-align:left">
+            <a class="btn-link" asp-controller="Category" asp-action="Create">ثبت جدید</a>
+        </div>
+        <br />
+        <table class="table text-center table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td>عنوان</td>
+                    <td>شرح</td>
+                    <td>ویرایش</td>
+                    <td>حذف</td>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Categories)
+                {
+                    <tr>
+                        <td>@item.CatTitle</td>
+                        <td>@item.Description</td>
+                        <td><a class="btn-link" asp-area="Admin" asp-controller="Category" asp-action="Create" asp-route-id="@item.ID">ویرایش</a></td>
+                        <td><a class="btn-link"  asp-controller="Category" asp-action="Remove" asp-route-id="@item.ID">حذف</a></td>
+
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
