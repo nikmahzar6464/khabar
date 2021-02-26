@@ -22,7 +22,9 @@ devAjax.prototype.get = function (url,sendData,callBackFunction,responseType='js
     }
 
     this.XHR.responseType = responseType;
-    this.XHR.open("Get", url + getQueryString(sendData), true)
+    this.XHR.open("Get", url + getQueryString(sendData), true);
+    this.XHR.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
     this.XHR.send();
 }
 
@@ -32,6 +34,11 @@ devAjax.prototype.post = function (url, sendData, callBackFunction, responseType
     this.XHR.onreadystatechange = function () {
         if (this.readyState == 4) {
             if (this.status >= 200 && this.status < 300) {
+
+                if (this.response && this.response.isNotValid) {
+                    alert(this.response.errorMessage);
+                }
+                else
                 callBackFunction(this.response);
             }
             else {
@@ -43,7 +50,8 @@ devAjax.prototype.post = function (url, sendData, callBackFunction, responseType
   
 
     this.XHR.responseType = responseType;
-    this.XHR.open("Post", url, true)
+    this.XHR.open("Post", url, true);
+    this.XHR.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     this.XHR.send(getFormData(sendData));
 }
 
@@ -52,11 +60,16 @@ function showError(status) {
     if (status >= 400 && status < 500) {
         errorMessage = " خطای سمت مشتری ";
     }
+    if (status == 403 || status == 401) {
+        errorMessage = " شما مجوز انجام چنین عملیاتی را ندارید ";
+    }
     if (status >= 500) {
         errorMessage = "خطای سمت سرور";
+        if (status == 521)
+            errorMessage = "خطای تقسیم بر صفر";
     }
 
-    alert(status);
+    alert(errorMessage);
 }
 
 function getQueryString(ob) {

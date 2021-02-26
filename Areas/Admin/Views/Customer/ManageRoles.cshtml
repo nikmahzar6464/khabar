@@ -1,0 +1,47 @@
+﻿@model Admin.Models.ManageCustomeRoleModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div>
+    @{ var des = "مدیریت نقش" + " " + Model.fullName;}
+    <caption-view asp-title="@des"></caption-view>
+    <div id="divrole" class="form-group">
+        @foreach (var item in Model.ListRoles)
+        {
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (Model.AssignedRoles.Contains(item))
+                    {
+                        <input class="form-check-input" id="@item.Id" type="checkbox" checked="checked"> @item.Name
+
+                    }
+                    else
+                    {
+                        <input class="form-check-input" id="@item.Id" type="checkbox"> @item.Name
+                    }
+                </label>
+            </div>
+        }
+        <button onclick="saveroleuser()" class="btn btn-dark"><i class="fa fa-save" ></i>ذخیره</button>
+    </div>
+
+</div>
+<script>
+    function saveroleuser() {
+  
+        var roleids = "";
+        $("#divrole input[type='checkbox']").each(function () {
+            if ($(this).is(":checked")) {
+                roleids += $(this).attr("id")+";";
+            }
+        
+        });
+
+       
+        AJX.post("/Admin/Customer/SaveRole", { roleids: roleids, userid:@Model.Id }, function () { 
+
+            alert("اطلاعات با موفقیت ذخیره شده");
+        });
+    }
+</script>

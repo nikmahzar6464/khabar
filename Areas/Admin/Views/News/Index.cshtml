@@ -1,4 +1,4 @@
-﻿<!--@model Models.NewsModel
+﻿@*@model Models.NewsModel
 @{
     Layout = "~/Views/Shared/_layout.cshtml";
 }
@@ -36,15 +36,15 @@
 
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var item in Model.NewsList)
+            <tbody>*@
+                @*@foreach (var item in Model.NewsList)*@
                 {
-                    <tr>
+                   @*<tr> 
 
                         
 
                         <td>@item.FullText</td>
-                        <td>@item.Title</td>-->
+                        <td>@item.Title</td>*@
 
                         @*<td><a class="btn-link" asp-controller="News" asp-action="Create" asp-route-id="@item.ID">ویرایش</a></td>*@
                         @*<td><a class="btn-link" asp-controller="News" asp-action="Remove" asp-route-id="@item.ID">حذف</a></td>*@
@@ -56,6 +56,6 @@
             </tbody>
         </table>
     </div>
-    @var _list = Context.Select(p=>new {p.ID,p.Name }).ToList();
+    @*var _list = Context.Select(p=>new {p.ID,p.Name }).ToList();*@
 </body>
 </html>-->

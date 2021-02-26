@@ -1,0 +1,89 @@
+﻿@using Microsoft.AspNetCore.Identity;
+
+@inject SignInManager<Domains.Customer> signInManager
+@inject UserManager<Domains.Customer> userManager
+<header class="container-fluid">
+
+    <nav class="navbar fixed-top navbar-dark bg-dark p-0" style="direction:ltr;">
+        <div class="container-fluid">
+
+            <ul class="nav navbar-nav pl-0 flex-row w-100 ">
+
+                @if (!signInManager.IsSignedIn(User))
+                {
+                    <li class="nav-item m-2 "><a class="nav-link ico-register" href="/Admin/Account/Register"><i class="fa fa-user-plus align-self-center"></i>ثبت نام</a></li>
+                    <li class="nav-item m-2"><a class="nav-link ico-login" href="/Account/LogIn"><i class="fa fa-user align-self-center"></i>ورود</a></li>
+                }
+                else
+                {
+                    <li class="nav-item m-2"><a class="nav-link ico-login"><i class="fa fa-user align-self-center"></i>سلام: @userManager.GetUserName(User)</a></li>
+                    <li class="nav-item m-2"><a class="nav-link ico-login" href="/Account/Logout"><i class="fa fa-user align-self-center"></i>خروج</a></li>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li class="nav-item m-2"><a class="nav-link ico-login" href="/Admin"><i class="fa fa-user align-self-center"></i>ورود به صفحه ی ادمین</a></li>
+                    }
+                }
+
+
+            </ul>
+
+        </div>
+        <br />
+    </nav>
+
+    <div class=" navbar container-fluid navbar-expand-sm  bg-dark navbar-dark" style="margin-top:70px;">
+
+        <div class="col-sm-2" style="color:skyblue;">
+            <h4 class="mt-4">
+                خبرگزاری معصومی
+            </h4>
+
+        </div>
+        <div class="col-sm-8 mt-4">
+            <div class="input-group">
+                <input type="text" class="form-control search-box-text" id="small-searchterms" autocomplete="off" name="q" placeholder="مشخصات خبر مورد نظر را وارد کنید">
+                <button type="submit" class="btn btn-success float-sm-right">
+                    <span class="sr-only">جستجو کنید</span>
+                    <span class="fa fa-search align-self-center"></span>
+                    جستجو
+                </button>
+            </div>
+        </div>
+        <div class="col-sm-2 d-sm-block d-none">
+            <img src="~/Images/images.jpg" style="height:100px;width:100px;float:left" />
+        </div>
+    </div>
+
+    <nav class="navbar container-fluid navbar-expand-sm  bg-secondary navbar-dark">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="pl-3 nav-link" href="/Home/Index">صفحه اصلی<span class="sr-only"></span></a></li>
+                @await Component.InvokeAsync("TopMenu")
+            </ul>
+        </div>
+    </nav>
+    <script>
+        $('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
+            if (!$(this).next().hasClass('show')) {
+                $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+            }
+            var $subMenu = $(this).next(".dropdown-menu");
+            $subMenu.toggleClass('show');
+
+
+            $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
+                $('.dropdown-submenu .show').removeClass("show");
+            });
+
+
+            return false;
+        });
+    </script>
+
+
+</header>
+

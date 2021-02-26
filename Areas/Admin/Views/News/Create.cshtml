@@ -4,13 +4,10 @@
 }
 
 
-
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>ثبت خبرها</title>
-
 </head>
 <body>
     <div style="width:70%;margin:10px auto;">
@@ -22,66 +19,56 @@
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">اطلاعات خبر</a>
-            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">تصاویر</a>
-
-
+            @*<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">تصاویر</a>*@
         </div>
 
 
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
-                <form asp-controller="News" asp-action="Create" method="post">
-                    <div></div>
+                <form asp-controller="News" asp-action="Create" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="hidden" asp-for="ID" />
-                    <input type="hidden" asp-for="CommentID" />
-
-                    <div class="form-group" id="tab1">
-                        <label asp-for="Title"></label>
-                        <input class="form-control" asp-for="Title">
-                    </div>
-
+                    <input type="hidden" asp-for="ImgAddress" />
 
                     <div class="form-group">
-                        <label asp-for="FullText"></label>
-                        <textarea class="form-control" asp-for="FullText"></textarea>
+                        <label for="txtTitle">عنوان</label>
+                        <input id="txtTitle" class="form-control" asp-for="Title">
                     </div>
 
-
-                    <div class="form-group" id="tab1">
-                        <label asp-for="CategoryID"></label>
-                        <select class="form-control" asp-items="@Model.Categories" asp-for="CategoryID"></select>
+                    <div class="form-group">
+                        <label for="txtFullText">متن خبر</label>
+                        <textarea id="txtFullText" class="form-control" asp-for="FullText"></textarea>
                     </div>
 
-
-                    <div class="form-group" id="tab1">
-                        <label asp-for="UserID"></label>
-                        <select class="form-control" asp-items="@Model.Users" asp-for="UserID"></select>
+                    <div class="form-group">
+                        <label for="slcCategoryId">موضوع</label>
+                        <select id="slcCategoryId" class="form-control" asp-items="@Model.Categories" asp-for="CategoryID"></select>
                     </div>
 
+                    <div class="form-group">
+                        <label for="slcUserId">نویسنده</label>
+                        <select id="slcUserId" class="form-control" asp-items="@Model.Users" asp-for="UserID"></select>
+                    </div>
 
-
+                    <div class="form-group">
+                        <label for="fuImg">عکس خبر</label>
+                        @if (Model.ID > 0)
+                        {
+                            <img id="imgNews" src="/Images/News/@Model.ImgAddress" width="100" />
+                        }
+                        <input id="fuImg" asp-for="ImgFile" type="file" class="form-control-file" />
+                    </div>
 
                     <button type="submit" class="btn btn-primary">ثبت</button>
-
                 </form>
-
-
-
-
-
-
             </div>
 
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-            
-            <div>
-                <button class="btn-danger">ثبت تصویر</button>
+            <!--<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 
-            </div>
-            
-            
-            </div>
+                <div>-->
+            @*@await Html.PartialAsync("_CreateorUpdate.NewsPictures.cshtml", Model)*@
+            <!--</div>
+            </div>-->
         </div>
     </nav>
 </body>

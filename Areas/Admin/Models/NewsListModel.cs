@@ -21,15 +21,14 @@ namespace Models
         }
 
 
-        [Display(Name = "عنوان جستجو: ")]
         public string NewsSearchName { get; set; }
 
+        [Display(Name = "عنوان جستجو: ")]
         public string SearchName { get; set; }
 
         [Display(Name ="موضوع خبر")]
         public int CategoryId { get; set; }
         public int UserID { get; set; }
-        public int CommentID { get; set; }
         public IList<NewsListItem> News { get; set; }
         public IList<SelectListItem> Categories { get; set; }
         public List<SelectListItem> Users { get; set; }

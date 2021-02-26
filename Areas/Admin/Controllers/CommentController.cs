@@ -11,10 +11,15 @@ namespace Khabar.Controllers
     [Area("Admin")]
     public class CommentController : Controller
     {
-        KhabarContext Context = new KhabarContext();
+        private readonly IKhabarContext Context = null;
+
+        public CommentController(IKhabarContext _Context)
+        {
+            this.Context = _Context;
+        }
         public IActionResult Index()
         {
-            return RedirectToAction("List");
+            return Redirect("/Admin/Comment/List");
         }
 
 
@@ -24,7 +29,7 @@ namespace Khabar.Controllers
         private void PrepareListModel(Models.CommentListModel model)
         {
             var _listcomment = Context.Comments.Where(p => (p.CommentName.Contains(model.CommentSearchName) || string.IsNullOrEmpty(model.CommentSearchName)) )
-                .Select(p => new {p.NewsID, NewsTitle = p.newses.Title, p.ID, p.CommentName, UserFullName = p.User.FullName, p.UserID, }).ToList();
+                .Select(p => new {p.NewsID, NewsTitle = p.newses.Title, p.ID, p.CommentName,  p.CustomerID, }).ToList();
 
             foreach (var Comment in _listcomment)
             {
@@ -32,8 +37,8 @@ namespace Khabar.Controllers
                 {
                     NewsID = Comment.NewsID,
                     NewsTitle= Comment.NewsTitle,
-                    UserID = Comment.UserID,
-                    UserFullName = Comment.UserFullName,
+                    UserID = Comment.CustomerID,
+                    //UserFullName = Comment.UserFullName,
 
                     ID = Comment.ID,
                     CommentName = Comment.CommentName,
@@ -54,6 +59,17 @@ namespace Khabar.Controllers
             PrepareListModel(model);
 
             return View(model);
+        }
+
+
+        [HttpGet]
+        public IActionResult Remove(int id)
+        {
+
+            var Comments = Context.Comments.Find(id);
+            Context.Remove(Comments);
+            Context.SaveChanges();
+            return RedirectToAction("List");
         }
     }
 }

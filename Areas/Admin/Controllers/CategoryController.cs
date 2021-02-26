@@ -5,18 +5,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataLayer;
 using Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Khabar.Controllers
 {
     [Area("Admin")]
     public class CategoryController : Controller
     {
-        KhabarContext KhabarContext = new KhabarContext();
+        private readonly IKhabarContext Context = null;
 
+        public CategoryController(IKhabarContext _Context)
+        {
+            this.Context = _Context;
+        }
 
         public IActionResult Index()
         {
-            return RedirectToAction("List");
+            return Redirect("/Admin/Category/List");
         }
 
         [HttpGet]
@@ -24,20 +29,21 @@ namespace Khabar.Controllers
         {
             if (string.IsNullOrEmpty(model.CategorySearchName))
                 model.CategorySearchName = "";
+            
 
-            model.Categories = KhabarContext.Categories.Where(p => p.CatTitle.Contains(model.CategorySearchName)).ToList();
+            model.Categories = Context.Categories.Where(p => p.CatTitle.Contains(model.CategorySearchName)).ToList();
             return View(model);
         }
 
 
-
+        
         [HttpGet]
         public IActionResult Create(int? id)
         {
             Models.CategoryModel model = new CategoryModel();
             if (id.HasValue)
             {
-                var Category = KhabarContext.Categories.Find(id);
+                var Category = Context.Categories.Find(id);
                 if (Category != null)
                 {
                     model.Description = Category.Description;
@@ -49,23 +55,24 @@ namespace Khabar.Controllers
         }
 
         [HttpPost]
+        
         public IActionResult Create(Models.CategoryModel model)
         {
             Domains.Category category = new Domains.Category();
             category.Description = model.Description;
             category.CatTitle = model.Name;
             category.ID = model.ID;
-            KhabarContext.Categories.Update(category);
-            KhabarContext.SaveChanges();
+            Context.Categories.Update(category);
+            Context.SaveChanges();
             return RedirectToAction("List");
         }
         [HttpGet]
         public IActionResult Remove(int id)
         {
 
-            var Category = KhabarContext.Categories.Find(id);
-            KhabarContext.Remove(Category);
-            KhabarContext.SaveChanges();
+            var Category = Context.Categories.Find(id);
+            Context.Remove(Category);
+            Context.SaveChanges();
             return RedirectToAction("List");
         }
     }

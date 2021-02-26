@@ -1,54 +1,106 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp2.1</TargetFramework>
+		<SignAssembly>false</SignAssembly>
+		<DelaySign>false</DelaySign>
+		<TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
-  </ItemGroup>
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
-    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNet.Providers.Core" Version="2.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="2.1.3" />
+		<PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="2.13.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.1.4" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="2.1.1" />
 
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="Areas\Admin\Views\Category\Create.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Areas\Admin\Views\Category\List.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Areas\Admin\Views\Shared\_ColumnOne.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Areas\Admin\Views\Shared\_layout.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Areas\Admin\Views\User\Create.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Areas\Admin\Views\_ViewImports.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Home\Index.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Shared\_layout.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-  </ItemGroup>
+		<!--<PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.11" >
+			<AllowExplicitVersion>true</AllowExplicitVersion>
+		</PackageReference>-->
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-    <Folder Include="wwwroot\Pictures\" />
-  </ItemGroup>
+
+		<!--<PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />-->
+	</ItemGroup>
+	<ItemGroup>
+		<DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+		<!--<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />-->
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="Areas\Admin\Views\Account\Login.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Areas\Admin\Views\Account\Register.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Areas\Admin\Views\Category\Create.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Areas\Admin\Views\Category\List.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Areas\Admin\Views\News\_CreateorUpdate.NewsPictures.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Areas\Admin\Views\Shared\_ColumnOne.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Areas\Admin\Views\Shared\_layout.cshtml">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Areas\Admin\Views\User\Create.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Areas\Admin\Views\_ViewImports.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Views\Catalog\NewsCategory.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Views\Catalog\ProdcutCategory.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Views\Catalog\NewsDetial.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Views\Catalog\_PictureBox.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Views\Home\Index.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Views\Home\_PictureBoxh.cshtml">
+		  <Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Views\Shared\Components\Header\Default.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Views\Shared\Components\TopMenu\Default.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Views\Shared\Error.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Views\Shared\_ColumnOne.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Views\Shared\_ColumnTwo.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+		<Content Update="Views\Shared\_layout.cshtml">
+			<Pack>$(IncludeRazorContentInPack)</Pack>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Migrations\" />
+		<Folder Include="wwwroot\Pictures\" />
+	</ItemGroup>
 
 </Project>

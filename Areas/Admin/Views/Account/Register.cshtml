@@ -1,0 +1,52 @@
+﻿@model Shop.Areas.Admin.Models.CustomerRegisterModel
+@{
+    Layout = "~/Views/Shared/_ColumnOne.cshtml";
+}
+
+<div>
+
+    <form id="formRegisterCustomer" method="post" asp-action="Register" asp-area="Admin" asp-controller="Account">
+
+        <div asp-validation-summary="All" class="mt-4 text-danger"></div>
+
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label asp-for="FirstName"></label>
+            <input class="form-control" asp-for="FirstName">
+            <span class="text-danger" asp-validation-for="FirstName"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName"></label>
+            <input class="form-control" asp-for="LastName">
+            <span class="text-danger" asp-validation-for="LastName"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input class="form-control" asp-for="Email">
+            <span class="text-danger" asp-validation-for="Email"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <input class="form-control" asp-for="UserName">
+            <span class="text-danger" asp-validation-for="UserName"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input class="form-control" asp-for="Password" type="password">
+            <span class="text-danger" asp-validation-for="Password"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConfirmPassword"></label>
+            <input class="form-control" asp-for="ConfirmPassword" type="password">
+            <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">ثبت</button>
+
+
+    </form>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+
+</div>

@@ -8,11 +8,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/Content/site.css" rel="stylesheet" />
     <link href="~/Content/DatePicker/persian-datepicker.min.css" rel="stylesheet" />
-    <script src="~/js/Jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script src="~/js/bootstrap.js"></script>
     <script src="~/js/Popper.js"></script>
     <script src="~/js/DatePicker/persian-date.min.js"></script>
     <script src="~/js/DatePicker/persian-datepicker.min.js"></script>
+    @*<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>*@
+
+    <script src="~/js/devAjax.js"></script>
+    <script src="~/js/UICommon.js"></script>
 
     @RenderSection("ViewScript", false)
     <title>پنل ادمین</title>
@@ -23,24 +29,38 @@
 
     <div class="container-fluid">
         <div class="row fixed-top bg-info" style="height:50px;">
-            <div class="col-2 text-center ">
+            <div class="col-12 text-center ">
+
                 <nav class="navbar navbar-dark">
-                    <a class="navbar-brand mb-0 h1" href="#"><img src="~/Images/store-icon.png" /><span>پنل مدیریت خبرگزاری</span></a>
+                    <a class="navbar-brand mb-0 h1" href="/admin"><img src="~/Images/store-icon.png" /><span>پنل مدیریت خبرگزاری</span></a>
+                    <a  style="text-align:right" href="/home/index"><span class="navbar-brand mb-0 h1">بازگشت به سایت</span></a>
+
+
+
+
                 </nav>
+
+
             </div>
-            <div class="col-10"></div>
+
+
+
         </div>
+
         <div class="row" style="margin-top:48px;">
 
             <div class="col d-sm-none d-block bg-dark">
+
                 <nav class="navbar bg-dark navbar-dark">
                     <form class="form-inline" action="#">
                         @*<div class="input-group">
-                                <button class="btn btn-danger">جستجو</button>
-                                <input type="text" class="form-control" placeholder="جستجو">
-                            </div>*@
+                            <button class="btn btn-danger">جستجو</button>
+                            <input type="text" class="form-control" placeholder="جستجو">
+                        </div>*@
                     </form>
                 </nav>
+
+
                 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -85,12 +105,12 @@
                             <li class="nav-item dropdown">
 
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="navbardrop">
-                                    نویسندگان
+                                    کاربران
                                 </a>
 
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/admin/User/list">لیست نویسنده ها</a>
-                                    <a class="dropdown-item" href="/admin/User/create">ثبت نویسنده جدید</a>
+                                    <a class="dropdown-item" href="/admin/Customer/list">لیست کاربران</a>
+
 
                                 </div>
 
@@ -98,21 +118,7 @@
 
                             </li>
 
-                            <li class="nav-item dropdown">
 
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="navbardrop">
-                                    کاربران ثبت نامی
-                                </a>
-
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/admin/UserLimited/list">لیست کاربران</a>
-
-
-                                </div>
-
-
-
-                            </li>
 
                             <li class="nav-item dropdown">
 
@@ -179,12 +185,12 @@
                         <li class="nav-item dropdown">
 
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="navbardrop">
-                                نویسندگان
+                                کاربران
                             </a>
 
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/admin/User/list">لیست نویسنده ها</a>
-                                <a class="dropdown-item" href="/admin/User/create">ثبت نویسنده جدید</a>
+                                <a class="dropdown-item" href="/admin/Customer/list">لیست کاربران</a>
+
 
                             </div>
 
@@ -192,21 +198,7 @@
 
                         </li>
 
-                        <li class="nav-item dropdown">
 
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="navbardrop">
-                                کاربران ثبت نامی
-                            </a>
-
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/admin/UserLimited/list">لیست کاربران</a>
-
-
-                            </div>
-
-
-
-                        </li>
 
                         <li class="nav-item dropdown">
 

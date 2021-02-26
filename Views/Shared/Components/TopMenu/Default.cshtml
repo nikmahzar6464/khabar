@@ -1,0 +1,7 @@
+﻿@model Models.TopMenuModel
+
+@foreach (var item in Model.ListMenu)
+{
+    <li class="nav-item"><a class="pl-3 nav-link" href="/Category/@item.MenuName">@item.MenuName<span class="sr-only"></span></a></li>
+
+}

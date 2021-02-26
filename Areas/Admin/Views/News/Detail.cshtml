@@ -1,0 +1,17 @@
+﻿@model Models.NewsModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.Head.cshtml";
+}
+
+<div>
+    <caption-view asp-title="مشاهده جزئیات خبر"></caption-view>
+
+    @await Html.PartialAsync("_CreateorUpdate.cshtml", Model)
+
+    @*@Html.Partial("_CreateorUpdate.cshtml", Model)*@
+
+
+
+
+</div>
+

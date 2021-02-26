@@ -1,0 +1,97 @@
+﻿@model Models.NewsDetialModel
+
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<Domains.Customer> userManager
+@inject SignInManager<Domains.Customer> signInManager
+
+@{
+    Layout = "~/Views/Shared/_ColumnOne.cshtml";
+}
+
+
+<div class="container-fluid p-4">
+    <div class="row">
+        <div class="col-sm-3">
+            <img id="imgMainPic" class="card-img-top" src="@Model.ImageUrl" alt="@Model.Title" style="height:400px;width:100%;cursor:pointer;" onclick="location.href='/Catalog/@Model.Title'">
+        </div>
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="card p-0" style="width:100%;">
+
+                    <div class="card-body">
+                        <h5 class="card-title">عنوان: @Model.Title</h5>
+
+                        <p class="card-text">متن: @Model.FullText</p>
+
+                    </div>
+
+
+
+
+
+
+                    <div class="card-body">
+                        <h5 class="card-title">نام نویسنده: @Model.UserLastName</h5>
+
+                        <p class="card-text">موضوع خبر: @Model.CategoryName</p>
+
+                    </div>
+
+                    <hr />
+
+                    @if (!signInManager.IsSignedIn(User))
+                    {
+
+                        <h4>در صورتی که تمایل به ثبت نظر برروی این خبر را دارید میبایست وارد سایت شوید</h4>
+
+                    }
+                    else
+                    {
+                        <h4>ثبت نظر</h4>
+                        <div>
+
+
+
+                            <form asp-controller="comments" asp-action="Create" method="post">
+                                <input type="hidden" asp-for="ID" />
+                                <input type="hidden" asp-for="CustomerId" value="@userManager.GetUserId(User)">
+                                <input type="hidden" asp-for="ID" value="@Model.ID">
+                                <div class="form-group">
+                                    <label asp-for="CommentName"></label>
+                                    <textarea class="form-control" asp-for="CommentName"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">ثبت</button>
+                            </form>
+
+
+
+
+
+                        </div>
+                    }
+
+
+
+
+                </div>
+
+                <div class="card p-0" style="width:100%;">
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>

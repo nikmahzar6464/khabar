@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Domains;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Models
 {
     public class NewsModel
     {
-
         public NewsModel()
         {
             Users = new List<SelectListItem>();
-           
             Categories = new List<SelectListItem>();
-
-
         }
 
         public int ID { get; set; }
@@ -41,9 +34,10 @@ namespace Models
         [Display(Name = "نویسنده")]
         public int UserID { get; set; }
 
+        [DataType(DataType.Upload)]
+        public IFormFile ImgFile { get; set; }
 
-        [Display(Name = "نظرات")]
-        public int CommentID { get; set; }
+        public string ImgAddress { get; set; }
 
         public IList<SelectListItem> Users { get; set; }
         

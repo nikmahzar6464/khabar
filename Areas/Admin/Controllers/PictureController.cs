@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace Khabar.Controllers
+namespace Khabar.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class PictureController : Controller
@@ -40,7 +40,7 @@ namespace Khabar.Controllers
                 }
             }
 
-            return new OkObjectResult(new { id= name });
+            return new OkObjectResult(new { id = name });
         }
     }
 }

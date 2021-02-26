@@ -1,9 +1,57 @@
-﻿@model Controllers.person
+﻿@model Models.HomeNewsModel
 @{
-    Layout = "~/Views/Shared/_layout.cshtml";
+    Layout = "~/Views/Shared/_ColumnOne.cshtml";
 }
 
-<div class="jumbotron h3 text-center">
-  به سایت ما خوش آمدید
-</div>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>صفحه اصلی سایت</title>
+    <link href="~/Css/CustomStyle.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="jumbotron text-center" style="font-size:25px;">
+        به صفحه ی اصلی سایت ما خوش آمدید
+    </div>
+    <hr />
 
+    <div class="bg-danger text-center" style="font-size:25px;">
+        برای استفاده از مطالب سایت برروی هرکدوم از عناوین موضوعی بالا کلیک کنید
+    </div>
+
+    <div class="container-fluid p-4">
+        <h4>آخرین اخبار</h4>
+        <hr />
+        <div class="grid">
+            @foreach (var item in Model.LatestNews)
+            {
+                <article>
+                    @if (item.Imageurl == null)
+                    {
+                        <img src="/Images/News/DefaultNewsImg.jpg" alt="@item.Title" class="imgLatestNews">
+                    }
+                    else
+                    {
+                        <img src="/Images/News/@item.Imageurl" alt="@item.Title" class="imgLatestNews">
+                    }
+
+                    <div class="text">
+                        <h4 class="titleLatestNews">@item.Title</h4>
+                        @if (item.FullText.Length >= 60)
+                        {
+                            <p class="txtLatestNews">@item.FullText.Substring(0, 50)</p>
+                        }
+                        else
+                        {
+                            <p class="txtLatestNews">@item.FullText</p>
+                        }
+
+                        <a href="/NewsDetails/@item.ID">ادامه خبر</a>
+                    </div>
+                </article>
+            }
+        </div>
+
+    </div>
+</body>
+</html>

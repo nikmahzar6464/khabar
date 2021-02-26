@@ -1,0 +1,16 @@
+﻿@model Models.CommentsModel
+
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<Domains.Customer> userManager
+
+
+<form asp-controller="comments" asp-action="Create" method="post">
+    <input type="hidden" asp-for="ID" />
+    <input type="hidden" asp-for="CustomerID" value="@userManager.GetUserId(User)">
+    <input type="hidden" asp-for="NewsID" value="@Model.ID">
+    <div class="form-group">
+        <label asp-for="CommentName"></label>
+        <textarea class="form-control" asp-for="CommentName"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">ثبت</button>
+</form>

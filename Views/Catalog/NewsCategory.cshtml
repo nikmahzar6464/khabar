@@ -1,0 +1,46 @@
+﻿@model Models.NewsCategoryModel
+@{
+    Layout = "~/Views/Shared/_Columnone.cshtml";
+    <link href="~/Css/CustomStyle.css" rel="stylesheet" />
+}
+
+
+<div class="container-fluid p-4">
+    <h4>اخبار @Model.CategoryName</h4>
+    <hr />
+    <div class="row">
+        <div class="grid">
+            @foreach (var item in Model.newslist)
+            {
+                @*<div class="col-sm-3 p-1">
+                        @await Html.PartialAsync("_PictureBox", product)
+                    </div>*@
+
+                <article>
+                    @if (item.ImageUrl == null)
+                    {
+                        <img src="/Images/News/DefaultNewsImg.jpg" alt="@item.Title" class="imgLatestNews">
+                    }
+                    else
+                    {
+                        <img src="/Images/News/@item.ImageUrl" alt="@item.Title" class="imgLatestNews">
+                    }
+
+                    <div class="text">
+                        <h4 class="titleLatestNews">@item.Title</h4>
+                        @if (item.FullText.Length >= 60)
+                        {
+                            <p class="txtLatestNews">@item.FullText.Substring(0, 50)</p>
+                        }
+                        else
+                        {
+                            <p class="txtLatestNews">@item.FullText</p>
+                        }
+
+                        <a href="/NewsDetails/@item.ID">ادامه خبر</a>
+                    </div>
+                </article>
+            }
+        </div>
+    </div>
+</div>

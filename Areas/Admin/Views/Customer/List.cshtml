@@ -1,0 +1,38 @@
+﻿@model List<Shop.Areas.Admin.Models.CustomerRegisterModel>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div>
+    <caption-view asp-title="لیست اعضا "></caption-view>
+
+    <div style="text-align:left">
+        <a class="btn-link" asp-area="Admin" asp-controller="Account" asp-action="Register">ثبت جدید</a>
+    </div>
+    <br />
+    <table class="table text-center table-bordered table-hover">
+        <thead>
+            <tr>
+                <td>نام و نام خانوادگی</td>
+                <td>کلمه کاربری</td>
+                <td>پست الکترونیکی</td>
+                <td>تخصیص نقش</td>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var spec = item.FirstName + " " + item.LastName;
+                <tr>
+                    <td>@spec</td>
+                    <td>@item.UserName</td>
+                    <td>@item.Email</td>
+                    <td><a class="btn-link" asp-area="Admin" asp-controller="Customer" asp-action="ManageRoles" asp-route-id="@item.Id">تخصیص</a></td>
+                    @*<td><a class="btn-link" asp-area="Admin" asp-controller="customer" asp-action="Remove" asp-route-id="@item.Id">حذف</a></td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

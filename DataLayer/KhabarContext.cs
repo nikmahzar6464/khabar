@@ -5,10 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domains;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace DataLayer
 {
-    public class KhabarContext : DbContext
+    public class SqlServerKhabarContext : IdentityDbContext<Customer, CustomerRole, int>, IKhabarContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -19,6 +21,9 @@ namespace DataLayer
         {
             modelBuilder.ApplyConfiguration<Category>(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration<News>(new newsConfiguration());
+            modelBuilder.Entity<IdentityUserLogin<int>>().HasKey(p => p.UserId);
+            modelBuilder.Entity<IdentityUserRole<int>>().HasKey(p => new { p.UserId, p.RoleId });
+            modelBuilder.Entity<IdentityUserToken<int>>().HasKey(p => new { p.UserId });
 
             modelBuilder.Ignore<BaseEntity>();
 
@@ -26,11 +31,9 @@ namespace DataLayer
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<News> News { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Comment> Comments{get;set;}
-        public DbSet<UserType> UserTypes { get; set; }
-        
-
+        public DbSet<NewsPicture> NewsPicture { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Log> Logs { get; set; }
     }
 
 
@@ -49,7 +52,7 @@ namespace DataLayer
     {
         public void Configure(EntityTypeBuilder<News> builder)
         {
-            builder.Property(p => p.Title).HasMaxLength(50).IsRequired();
+            builder.Property(p => p.Title).HasMaxLength(2000).IsRequired();
 
         }
     }

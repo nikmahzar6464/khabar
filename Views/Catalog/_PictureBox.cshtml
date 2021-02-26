@@ -1,0 +1,14 @@
+﻿@model Models.NewsItemModel
+
+<div class="card p-0" style="width:100%;">
+    <img class="card-img-top" src="@Model.ImageUrl" alt="@Model.Title" style="height:200px;width:100%;cursor:pointer;" onclick="location.href = '/Catalog/@Model.Title'">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Title</h5>
+        @*<p class="card-text">متن خبر: @Model.FullText</p>*@
+       
+
+        </div>
+    </div>
+</div>
+
+

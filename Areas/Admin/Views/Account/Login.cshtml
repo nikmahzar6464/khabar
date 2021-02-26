@@ -1,0 +1,38 @@
+﻿@model Shop.Areas.Admin.Models.CustomerLoginModel
+@{
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2 col-0"></div>
+        <div class="col-sm-8 col-12">
+
+            <form id="formRegisterCustomer" method="post" asp-action="LogIn" asp-area="Admin" asp-controller="Account">
+
+                <div asp-validation-summary="All"></div>
+
+               <input asp-for="returnUrl" type="hidden" value="@Url.ActionContext.HttpContext.Request.Query["ReturnUrl"]"/>
+                <div class="form-group">
+                    <label asp-for="UserName"></label>
+                    <input class="form-control" asp-for="UserName">
+                    <span class="text-danger" asp-validation-for="UserName"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input class="form-control" asp-for="Password" type="password">
+                    <span class="text-danger" asp-validation-for="Password"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RememberMe"></label>
+                    <input class="form-control col-1" asp-for="RememberMe">
+                    <span class="text-danger" asp-validation-for="RememberMe"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">ورود</button>
+            </form>
+
+        </div>
+        <div class="col-sm-2 col-0"></div>
+    </div>
+
+</div>

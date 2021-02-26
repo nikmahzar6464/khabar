@@ -1,0 +1,26 @@
+﻿@model int?
+@{ 
+    var ErrorMessage = " خطا- لطفا با مدیر سیستم تماس بگیرید";
+    if (Model == 404)
+    {
+        ErrorMessage = " آدرس صفحه مورد نظر معتبر نیست ";
+    }
+    if (Model == 401 || Model==403)
+    {
+        ErrorMessage = " شما مجوز چنین عملیاتی را ندارید ";
+    }
+    if (Model >= 500)
+    {
+        ErrorMessage = " خطای سرور- لطفا با مدیر سیستم تماس بگیرید";
+
+    }
+
+}
+
+@{
+    Layout = "~/Views/Shared/_ColumnOne.cshtml";
+
+}
+<div class="jumbotron h4 text-center text-danger">
+  @ErrorMessage
+</div>

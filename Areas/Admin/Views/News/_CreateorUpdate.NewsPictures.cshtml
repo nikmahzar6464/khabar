@@ -1,0 +1,43 @@
+﻿@model Models.NewsModel
+
+<div class="m-3">
+    @await Html.PartialAsync("~/Areas/Admin/Views/Picture/Index.cshtml", "NewsPicture")
+   @* @Html.Partial("~/Areas/Admin/Views/Picture/Index.cshtml", "NewsPicture")*@
+</div>
+
+<button onclick="SavePicture()" type="button" class="btn btn-success"><i class="fa fa-save m-1"></i>ذخیره عکس</button>
+<ul class="list-group m-3" id="pictureList"></ul>
+
+<script>
+
+    function SavePicture() {
+        debugger;
+
+        var picid = document.getElementById("NewsPicture").value;
+
+        if (picid == null || picid.trim() == "") {
+            alert("تصویری را انتخاب نمایید");
+            return;
+        }
+
+        var sendData = { newsid:@Model.ID,picturesid: picid, };
+        AJX.post("/Admin/news/SavePicture", sendData, function () {
+            GetPictures();
+            alert("عملیات با موفقیت انجام شد");
+        });
+    }
+
+    function GetPictures() {
+        debugger;
+        var sendData = { newsid:@Model.ID };
+        AJX.get("/Admin/news/GetPictures", sendData, function (_list) {
+            var str = "";
+            for (var i in _list) {
+                str += '<li class="list-group-item"  data-id="' + _list[i].id + '">';
+                str += '<img style="width:60px;height:60px;" src="' + '/Pictures/' + _list[i].picturesid + '.jpg">';
+            }
+            document.getElementById("pictureList").innerHTML=str;
+        });
+    }
+    GetPictures();
+</script>

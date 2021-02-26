@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using DataLayer;
+using Microsoft.AspNetCore.Authorization;
+
 namespace Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Administrator")]
     public class HomeController : Controller
     {
 
